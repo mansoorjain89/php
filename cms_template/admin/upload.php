@@ -30,6 +30,20 @@
                             Upload
                             <small>Subheading</small>
                         </h1>
+                        <?php
+                        $result = User::find_all_users();
+                        foreach ($result as $singleValue) {
+                            echo $singleValue->username . "<br>";
+                        }
+                        ?>
+
+                        <?php
+                        $result = User::find_by_user_id('1');
+                        //$the_object = User::instantiation($result);
+                        var_dump($result);
+                        //echo $result[$this->];
+                         ?>
+
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
