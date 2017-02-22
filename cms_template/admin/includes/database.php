@@ -43,7 +43,4 @@ public function insert_id(){
 
 $database = new Database();
 
-if($database->connection) {
-    echo "sucess db";
-}
  ?>

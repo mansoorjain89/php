@@ -40,8 +40,8 @@
                         <?php
                         $result = User::find_by_user_id('1');
                         //$the_object = User::instantiation($result);
-                        var_dump($result);
-                        //echo $result[$this->];
+                        //var_dump($result);
+                        echo $result->username;
                          ?>
 
                         <ol class="breadcrumb">

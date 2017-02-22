@@ -18,8 +18,8 @@ return $result_set;
 public static function find_by_user_id($id){
 global $database;
 
-$result_set = self::find_this_query("select * from users where id = $id limit 1");
-return $result_set;
+$result_set_array = self::find_this_query("select * from users where id = $id limit 1");
+return !empty($result_set_array) ? array_shift($result_set_array) : false;
 }
 
 public static function find_this_query($sql) {
@@ -31,6 +31,21 @@ public static function find_this_query($sql) {
         $the_object_array[] = self::instantiation($row);
     }
     return $the_object_array;
+}
+
+public static function verify_user($username,$password) {
+
+    global $database;
+    $username = $database->escape_string($username);
+    $password = $database->escape_string($password);
+
+    $sql = "select * from users where";
+    $sql .= "username = '{$username}'";
+    $sql .= "and password = '{$password}' limit 1'";
+
+    $result_set_array = self::find_this_query($sql);
+    return !empty($result_set_array) ? array_shift($result_set_array) : false;
+
 }
 
 public static function instantiation($result) {
@@ -47,6 +62,8 @@ public function has_the_attribute($the_attribute) {
     $object_properties = get_object_vars($this);
     return array_key_exists($the_attribute,$object_properties);
 }
+
+
 }
 
 
